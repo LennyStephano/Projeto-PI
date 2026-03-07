@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" styleshitt="sy.css">
+    <title>EasyServer</title>
+</head>
+<body>
+    <h2> Mantendo sua empresa sem problemas , ao cuidar do servidor</h2>
+    <p> Ja pensou em uma ferramente que esta verificando a temperatura dos seus servidores 24/7 ? <br> 
+    Pois nós da EasyServer sim! <br> 
+Um componente que verifica a cada momento a temperatura do servidor e do espaco alertando o tecnico em casos que podem prejudicar <Br> 
+Responda nosso questionario para ver se nossa empresa é para voce!</p>
+<Br> 
+    Quantos servidores a sua empresa possui? (Se não souber exato pode colocar o aproximado) <input type="text" id="qntd"> <Br> 
+            Voce possui algum tipo de monitoramento em tempo real sobre a temperatura de cada servidor? <input type="text" name="" id="moni"> <Br>
+                Qual a média investida em cada servidor? <input type="text" name="" id="valor"> <br> 
+                <button onclick="calc()">Calcular</button> <Br> 
+                    <div id="exibir"></div>
+                    <div id="monitor"></div>
+
+</body>
+</html>
+<script>
+    function calc(){
+        let quantidade = Number(qntd.value) ; 
+        let monitoramento = moni.value; 
+        let valores = valor.value ; 
+        let total = quantidade * valores ; 
+        let prejuizo = total  + (total * 0.5)
+        if (monitoramento == "nao" || monitoramento == "Nao"){
+            monitor.innerHTML = `A aquisação do EasyServer é hoje uma ótima forma da sua empresa fazer o monitoramento da temperatura dos seus servidores <br> em tempo real.  `
+        }
+        else {
+            monitor.innerHTML = `Será que o sistema atual é o que sua empresa precisa ? Venha descobrir mais com o EasyServer`
+        }
+        exibir.innerHTML = `O superaquecimento dos servidores causa o degradamento em componentes e consequentemente diminui 
+        a sua vida util. <Br> Podendo até desligar e causar a perda de dados. Seu investimento aproximado é de ${total.toFixed(2)} , e no caso 
+        de superaquecimento pode chegar em um prejuízo estimado de R$${prejuizo.toFixed(2)}. <br>
+        Para evitar prejuízos e dor de cabeca seja EasyServer `
+    }
+</script>
