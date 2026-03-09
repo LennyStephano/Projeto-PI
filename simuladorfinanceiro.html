@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de risco</title>
+</head>
+
+<body>
+    <h1>Calculadora de Risco de data center</h1>
+
+    <h3>Descubra o risco financeiro de não monitorar sua infraestrutura.</h3>
+
+    Informe a quantidade de servidores na sala:
+    <input id="qtd_servidores" type="number"> <br><br>
+
+    Informe o valor médio de cada servidor (R$):
+    <input id="valor_servidor" type="number"> <br><br>
+
+    Informe a temperatura atual da sala (°C):
+    <input id="temperatura" type="number"> <br><br>
+
+    <button onclick="simularRisco()">Calcular Risco de prejuízo</button>
+
+    <br><br>
+    <div id="msg"></div>
+
+</body>
+
+</html>
+
+<script>
+    function simularRisco() {
+
+        let qtd = Number(qtd_servidores.value)
+        let valor = Number(valor_servidor.value)
+        let temp = Number(temperatura.value)
+
+        let patrimonio = qtd * valor
+        let limite = 27
+
+        msg.innerHTML = "Você tem um patrimônio de R$ " + patrimonio.toFixed(2) + " operando na sala<br><br>"
+
+        if (temp >= 18 && temp <= limite) {
+            msg.innerHTML += "Temperatura de " + temp + "°C está ideal."
+        }
+
+        if (temp > limite) {
+
+            let graus = temp - limite
+            let risco = graus * 5
+
+            if (risco > 100) {
+                risco = 100
+            }
+
+            let dinheiro = patrimonio * risco / 100
+
+            msg.innerHTML += "ALERTA DE RISCO!<br>"
+            msg.innerHTML += "Temperatura acima do limite seguro.<br>"
+            msg.innerHTML += "Isso gera um risco de falha por superaquecimento de " + risco + "%<br>"
+            msg.innerHTML += "Prejuízo estimado: R$ " + dinheiro.toFixed(2) + "<br>"
+            msg.innerHTML += "Vale a pena arriscar R$ " + dinheiro.toFixed(2) + " ao invés de investir em nosso sistema de monitoramento?"
+        }
+
+        if (temp < 18) {
+            msg.innerHTML += "Temperatura muito baixa, pode causar problemas."
+        }
+
+    }
+</script>
