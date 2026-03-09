@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" styleshitt="sy.css">
+    <title>EasyServer</title>
+</head>
+<body>
+    <h2> EASYSERVER</h2>
+    <h2> Simulador financeiro</h2>
+
+    Informe quantos servidores a sua empresa possui: 
+    <input type="text" id="ipt_qtd"> <Br><br>
+
+    Informe o valor médio de cada servidor:
+    <input type="text" id="ipt_servidor"><Br><br>
+
+    Informe quantas horas o sistema ficou parado:
+    <input type="text" id="ipt_horas_parado"><Br><br>
+
+    Informe o custo por hora de indisponibilidade:
+    <input type="text" id="ipt_custo_indispo"><Br><br>
+                
+    <button onclick="calcular()">Calcular</button> <Br> 
+    <div id="div_msg"></div>
+
+</body>
+</html>
+<script>
+    function calcular(){
+        let qtd = Number(ipt_qtd.value) ; 
+        let serv = Number(ipt_servidor.value);
+        let hrsParado = Number(ipt_horas_parado.value);
+        let custoIndispo = Number(ipt_custo_indispo.value);
+        investimento = qtd * serv;
+        totalCusto = hrsParado * custoIndispo;
+        prejuizo = investimento - totalCusto;
+
+
+        if (prejuizo > 100000){
+            div_msg.innerHTML = `Prejuízo estimado: R$ ${prejuizo.toFixed(2)}<br>
+            Alto impacto financeiro para o data center.`
+        }
+        if (prejuizo > 50000){
+            div_msg.innerHTML = `Prejuízo estimado: R$ ${prejuizo.toFixed(2)}<br>
+            Impacto financeiro moderado.`
+        }
+        else {
+            div_msg.innerHTML = `Prejuízo estimado: R$ ${prejuizo.toFixed(2)}<br>
+            Impacto baixo.`
+        }
+    }
+</script>
