@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador - Júlia Lemos</title>
+</head>
+<body>
+    <h2>Simulador financeiro</h2>
+
+    Indique quantos servidores comprados:
+    <input id="ipt_qnt" type="text"> <br>
+
+    Indique o valor aproximado de cada um:
+    <input id="ipt_preco"> <br>
+
+    Indique quantos já falharam:
+    <input id="ipt_falha" type="text"> <br>
+
+    <button onclick="calcular()">Calcular Risco</button> <br>
+
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function calcular() {
+        let qntServidores = Number(ipt_qnt.value);
+        let preco = Number(ipt_preco.value);
+        let falha = Number(ipt_falha.value);
+
+        let valorGasto = qntServidores * preco;
+        let prejuizoOcorrido = valorGasto - (falha * preco);
+        let risco = (falha / qntServidores) * 100;
+
+        div_msg.innerHTML = `Sua empresa já teve um prejuízo de R$${prejuizoOcorrido.toFixed(2)}, então
+        o prejuízo foi de ${risco}%`;
+    }
+</script>
